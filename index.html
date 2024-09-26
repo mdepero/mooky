@@ -171,6 +171,7 @@
             backgroundVideoIndex = 0;
             backgroundVideoIds = ["c","fg","ss","bmi"];
             window.setInterval(function(){
+                console.log("🥔");
                 const currId = backgroundVideoIds[backgroundVideoIndex];
                 const curr = document.getElementById(currId);
                 backgroundVideoIndex = (backgroundVideoIndex + 1) % backgroundVideoIds.length;
@@ -182,25 +183,30 @@
                 curr.classList.remove("backgroundVideoActive");
                 curr.pause();
             }, 5000);
+
+            function imageLoaded() {
+                document.getElementById('backgroundVideoContainer').innerHTML += `
+            <video muted loop playsinline class="backgroundVideo" id="fg">
+                <source src="assets/video/feelgood.mp4" type="video/mp4">
+            </video>
+            <video muted loop playsinline class="backgroundVideo" id="ss">
+                <source src="assets/video/selfsabotage.mp4" type="video/mp4">
+            </video>
+            <video muted loop playsinline class="backgroundVideo" id="bmi">
+                <source src="assets/video/breathemein_clipped.mp4" type="video/mp4">
+            </video>`;
+                
+            }
         </script>
     </head>
     <body>
         <div id="backgroundVideoContainer">
-            <video autoplay muted loop class="backgroundVideo backgroundVideoActive" id="c">
+            <video autoplay muted loop playsinline class="backgroundVideo backgroundVideoActive" id="c">
                 <source src="assets/video/closure_clipped.mp4" type="video/mp4">
-            </video>
-            <video muted loop class="backgroundVideo" id="fg">
-                <source src="assets/video/feelgood.mp4" type="video/mp4">
-            </video>
-            <video muted loop class="backgroundVideo" id="ss">
-                <source src="assets/video/selfsabotage.mp4" type="video/mp4">
-            </video>
-            <video muted loop class="backgroundVideo" id="bmi">
-                <source src="assets/video/breathemein_clipped.mp4" type="video/mp4">
             </video>
         </div>
         <div id="foldCover">
-            <img class="section" src="./assets/image/centerfold_welcome.webp" alt="It's M.O.O.K.Y.!" />
+            <img class="section" src="./assets/image/centerfold_welcome.webp" alt="It's M.O.O.K.Y.!" onload="imageLoaded()" />
             <a href="https://mattdepero.com" class="section section-border text-gradient">Click Me</a>
             <div class="section section-border text-gradient" style="margin-top: 2rem;">
                 <h2 class="text-gradient">Connect</h2>
