@@ -183,26 +183,21 @@
                 curr.classList.remove("backgroundVideoActive");
                 curr.pause();
             }, 5000);
-
-            function imageLoaded() {
-                document.getElementById('backgroundVideoContainer').innerHTML += `
-            <video muted loop playsinline class="backgroundVideo" id="fg">
-                <source src="assets/video/feelgood.mp4" type="video/mp4">
-            </video>
-            <video muted loop playsinline class="backgroundVideo" id="ss">
-                <source src="assets/video/selfsabotage.mp4" type="video/mp4">
-            </video>
-            <video muted loop playsinline class="backgroundVideo" id="bmi">
-                <source src="assets/video/breathemein_clipped.mp4" type="video/mp4">
-            </video>`;
-                
-            }
         </script>
     </head>
     <body>
         <div id="backgroundVideoContainer">
             <video autoplay muted loop playsinline class="backgroundVideo backgroundVideoActive" id="c">
-                <source src="assets/video/closure_clipped.mp4" type="video/mp4">
+                <source src="assets/video/closure_clipped_opt.mp4" type="video/mp4">
+            </video>
+            <video muted loop playsinline class="backgroundVideo" id="fg">
+                <source src="assets/video/feelgood_opt.mp4" type="video/mp4">
+            </video>
+            <video muted loop playsinline class="backgroundVideo" id="ss">
+                <source src="assets/video/selfsabotage_opt.mp4" type="video/mp4">
+            </video>
+            <video muted loop playsinline class="backgroundVideo" id="bmi">
+                <source src="assets/video/breathemein_clipped_opt.mp4" type="video/mp4">
             </video>
         </div>
         <div id="foldCover">
