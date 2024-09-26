@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- made by some dude in a basement ©2024 M.O.O.K.Y -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>M.O.O.K.Y. Music</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="manifest" href="/site.webmanifest">
+
+        <style>
+            html,body,div,video {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* video background */
+            #backgroundVideoContainer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .backgroundVideo {
+                display: none;
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+            }
+            .backgroundVideoActive {
+                display: flex;
+            }
+
+            /* front one page */
+            #foldCover {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                min-height: 100vh;
+                padding-bottom: 2rem;
+                background-color: rgb(0, 0, 0, 0.7);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                p, h1, img {
+
+                    color: #fff;
+
+                    /* https://stackoverflow.com/questions/26634201/add-stroke-around-text-on-the-outside-with-css
+                    .fancy-outer-stroke {
+                        text-shadow:
+                            -2px -2px 0 #000,
+                            0   -2px 0 #000,
+                            2px -2px 0 #000,
+                            2px  0   0 #000,
+                            2px  2px 0 #000,
+                            0    2px 0 #000,
+                            -2px  2px 0 #000,
+                            -2px  0   0 #000;
+                    }*/
+                }
+                .section {
+                    width: 80%;
+                    max-width: 350px;
+                    padding: 15px 25px;
+                    color: #fff;
+                    font-weight: 1000;
+                    display: inline-block;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-family: Arial, Helvetica, sans-serif;
+
+                    form {
+                        width: 100%;
+                        display: inline-flex;
+                        justify-content: center;
+
+                        input {
+                            width: 80%;
+                            border-style: solid;
+                            border-image: linear-gradient(to right, #e7d801, #644502) 1;
+                        }
+                        button {
+                            width: 80px;
+                            border: none;
+                        }
+                    }
+                }
+                .text-gradient {
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: black;
+                    background: -webkit-linear-gradient(#e7d801, #644502);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+                .text-solid {
+                    -webkit-text-stroke-width: 1px;
+                    -webkit-text-stroke-color: black;
+                    color: #9b9000;
+                }
+                a,h1,h2,h3,h4,h5,h6 .section {
+                    font-size: 2rem;
+                    text-align: center;
+                    margin-top: 0;
+                }
+                .section-border {
+                    border-radius: 7px;
+                    border-width: 4px;
+                    border-style: solid;
+                    border-image: linear-gradient(to right, #e7d801, #644502) 1;
+                }
+            }
+
+            .m-button  {
+                color: #9b9000 !important;
+                -webkit-text-stroke-color: black;
+                font-weight: 800;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: Arial, Helvetica, sans-serif;
+                border-radius: 0 4px 4px 0;
+                background-color: rgba(100,69,2, 0.2) !important;
+                cursor: pointer;
+            }
+            .m-button:hover {
+                background-color: rgb(100,69,2, 1.0) !important;
+            }
+            .m-input {
+                color: #3b2900 !important;
+                border-radius: 4px 0 0 4px;
+                outline-width: 0;
+                background-color: rgba(248, 239, 218, 0.2);
+            }
+            .m-input:focus {
+                background-color: rgba(248, 239, 218, 0.9);
+            }
+
+            /* https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4 */
+            .icon {
+                display: inline-flex;
+                align-self: center;
+            }
+
+            .icon svg, .icon svg path, .icon img {
+                stroke: #8f8500;
+                fill: #8f8500;
+            }
+            .icon svg:hover, .icon svg:hover path, .icon img:hover {
+                stroke: #e7d801;
+                fill: #e7d801;
+            }
+
+            .icon.baseline svg, .icon img {
+                position: relative;
+            }
+        </style>
+        <script type="text/javascript">
+            backgroundVideoIndex = 0;
+            backgroundVideoIds = ["c","fg","ss","bmi"];
+            window.setInterval(function(){
+                const currId = backgroundVideoIds[backgroundVideoIndex];
+                const curr = document.getElementById(currId);
+                backgroundVideoIndex = (backgroundVideoIndex + 1) % backgroundVideoIds.length;
+                const nextId = backgroundVideoIds[backgroundVideoIndex];
+                const next = document.getElementById(nextId);
+
+                next.play();
+                next.classList.add("backgroundVideoActive");
+                curr.classList.remove("backgroundVideoActive");
+                curr.pause();
+            }, 5000);
+        </script>
+    </head>
+    <body>
+        <div id="backgroundVideoContainer">
+            <video autoplay muted loop class="backgroundVideo backgroundVideoActive" id="c">
+                <source src="assets/video/closure_clipped.mp4" type="video/mp4">
+            </video>
+            <video muted loop class="backgroundVideo" id="fg">
+                <source src="assets/video/feelgood.mp4" type="video/mp4">
+            </video>
+            <video muted loop class="backgroundVideo" id="ss">
+                <source src="assets/video/selfsabotage.mp4" type="video/mp4">
+            </video>
+            <video muted loop class="backgroundVideo" id="bmi">
+                <source src="assets/video/breathemein_clipped.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="foldCover">
+            <img class="section" src="./assets/image/centerfold_welcome.webp" alt="It's M.O.O.K.Y.!" />
+            <a href="https://mattdepero.com" class="section section-border text-gradient">Click Me</a>
+            <div class="section section-border text-gradient" style="margin-top: 2rem;">
+                <h2 class="text-gradient">Connect</h2>
+                <h2 style="margin-bottom: 0;">
+                    <!-- spotify -->
+                    <div class="icon baseline">
+                        <a href="https://www.instagram.com/m.o.o.k.y/" target="_BLANK">
+                            <svg width="1.5em" height="1.5em" viewBox="0 0 32 32"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 16 4 C 9.371094 4 4 9.371094 4 16 C 4 22.628906 9.371094 28 16 28 C 22.628906 28 28 22.628906 28 16 C 28 9.371094 22.628906 4 16 4 Z M 16 6 C 21.554688 6 26 10.445313 26 16 C 26 21.554688 21.554688 26 16 26 C 10.445313 26 6 21.554688 6 16 C 6 10.445313 10.445313 6 16 6 Z M 14.40625 10.75 C 12.460938 10.75 10.765625 10.929688 9.15625 11.4375 C 8.730469 11.523438 8.375 11.84375 8.375 12.4375 C 8.375 13.03125 8.8125 13.554688 9.40625 13.46875 C 9.660156 13.46875 9.832031 13.375 10 13.375 C 11.355469 13.035156 12.882813 12.875 14.40625 12.875 C 17.367188 12.875 20.40625 13.535156 22.4375 14.71875 C 22.691406 14.804688 22.777344 14.90625 23.03125 14.90625 C 23.625 14.90625 24.039063 14.46875 24.125 13.875 C 24.125 13.367188 23.871094 13.042969 23.53125 12.875 C 20.992188 11.4375 17.621094 10.75 14.40625 10.75 Z M 14.125 14.46875 C 12.347656 14.46875 11.082031 14.722656 9.8125 15.0625 C 9.390625 15.230469 9.15625 15.492188 9.15625 16 C 9.15625 16.421875 9.492188 16.84375 10 16.84375 C 10.171875 16.84375 10.246094 16.835938 10.5 16.75 C 11.429688 16.496094 12.707031 16.34375 14.0625 16.34375 C 16.855469 16.34375 19.285156 17.023438 21.0625 18.125 C 21.230469 18.210938 21.402344 18.28125 21.65625 18.28125 C 22.164063 18.28125 22.5 17.851563 22.5 17.34375 C 22.5 17.003906 22.339844 16.667969 22 16.5 C 19.800781 15.144531 17.003906 14.46875 14.125 14.46875 Z M 14.40625 18.125 C 12.96875 18.125 11.605469 18.285156 10.25 18.625 C 9.910156 18.710938 9.65625 18.953125 9.65625 19.375 C 9.65625 19.714844 9.921875 20.0625 10.34375 20.0625 C 10.429688 20.0625 10.675781 19.96875 10.84375 19.96875 C 11.945313 19.714844 13.128906 19.5625 14.3125 19.5625 C 16.425781 19.5625 18.359375 20.070313 19.96875 21 C 20.140625 21.085938 20.332031 21.15625 20.5 21.15625 C 20.839844 21.15625 21.164063 20.902344 21.25 20.5625 C 21.25 20.136719 21.066406 19.980469 20.8125 19.8125 C 18.949219 18.710938 16.773438 18.125 14.40625 18.125 Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- instagram -->
+                     <div class="icon baseline">
+                        <a href="https://www.instagram.com/m.o.o.k.y/" target="_BLANK">
+                            <svg width="1.5em" height="1.3em" style="top:-.1em; margin-right: .1em;" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 551.034 551.034" style="enable-background:new 0 0 000.000 000.000;" xml:space="preserve">
+                                    <path class="logo" id="XMLID_17_" d="M386.878,0H164.156C73.64,0,0,73.64,0,164.156v222.722 c0,90.516,73.64,164.156,164.156,164.156h222.722c90.516,0,164.156-73.64,164.156-164.156V164.156 C551.033,73.64,477.393,0,386.878,0z M495.6,386.878c0,60.045-48.677,108.722-108.722,108.722H164.156 c-60.045,0-108.722-48.677-108.722-108.722V164.156c0-60.046,48.677-108.722,108.722-108.722h222.722 c60.045,0,108.722,48.676,108.722,108.722L495.6,386.878L495.6,386.878z"/>
+                                
+                                    <path id="XMLID_81_" d="M275.517,133C196.933,133,133,196.933,133,275.516 s63.933,142.517,142.517,142.517S418.034,354.1,418.034,275.516S354.101,133,275.517,133z M275.517,362.6 c-48.095,0-87.083-38.988-87.083-87.083s38.989-87.083,87.083-87.083c48.095,0,87.083,38.988,87.083,87.083 C362.6,323.611,323.611,362.6,275.517,362.6z"/>
+                                
+                                    <circle id="XMLID_83_" cx="418.306" cy="134.072" r="34.149"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- youtube -->
+                     <div class="icon baseline">
+                        <a href="https://www.youtube.com/@m.o.o.k.y9223" target="_BLANK">
+                            <svg version="1.1" width="1.5em" height="1.5em" viewBox="0 0 256 256" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                                    <path d="M 88.119 23.338 c -1.035 -3.872 -4.085 -6.922 -7.957 -7.957 C 73.144 13.5 45 13.5 45 13.5 s -28.144 0 -35.162 1.881 c -3.872 1.035 -6.922 4.085 -7.957 7.957 C 0 30.356 0 45 0 45 s 0 14.644 1.881 21.662 c 1.035 3.872 4.085 6.922 7.957 7.957 C 16.856 76.5 45 76.5 45 76.5 s 28.144 0 35.162 -1.881 c 3.872 -1.035 6.922 -4.085 7.957 -7.957 C 90 59.644 90 45 90 45 S 90 30.356 88.119 23.338 z M 36 58.5 v -27 L 59.382 45 L 36 58.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                </h2>
+            </div>
+            <div class="section section-border" style="margin-top: 2rem;">
+                <h2 class="text-gradient">Join The Club</h2>
+                <p class="text-solid">never miss a show by being the first to hear news and updates</p>
+                <form>
+                    <input class="m-input" type="email" name="name" id="name" placeholder="Email Address" required>
+                    <button type="submit" class="m-button">JOIN</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
