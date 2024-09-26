@@ -19,6 +19,9 @@
                 margin: 0;
                 padding: 0;
             }
+            body {
+                font-size: 100%;
+            }
 
             /* video background */
             #backgroundVideoContainer {
@@ -49,7 +52,7 @@
                 width: 100%;
                 min-height: 100vh;
                 padding-bottom: 2rem;
-                background-color: rgb(0, 0, 0, 0.7);
+                background-color: rgb(0, 0, 0, 0.8);
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -73,8 +76,8 @@
                     }*/
                 }
                 .section {
-                    width: 80%;
-                    max-width: 350px;
+                    width: 88%;
+                    max-width: 375px;
                     padding: 15px 25px;
                     color: #fff;
                     font-weight: 1000;
@@ -102,19 +105,20 @@
                 .text-gradient {
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: black;
-                    background: -webkit-linear-gradient(#e7d801, #644502);
+                    background: -webkit-linear-gradient(#e7d801, #e09a01);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                 }
                 .text-solid {
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: black;
-                    color: #9b9000;
+                    color: #e09a01;
                 }
                 a,h1,h2,h3,h4,h5,h6 .section {
                     font-size: 2rem;
                     text-align: center;
                     margin-top: 0;
+                    font-weight: 1000;
                 }
                 p {
                     text-align:justify;
@@ -124,6 +128,9 @@
                     border-width: 4px;
                     border-style: solid;
                     border-image: linear-gradient(to right, #e7d801, #644502) 1;
+                }
+                .section-margin {
+                    margin-top: 2rem;
                 }
             }
 
@@ -205,8 +212,11 @@
         </div>
         <div id="foldCover">
             <img class="section" src="./assets/image/centerfold_welcome.webp" alt="It's M.O.O.K.Y.!" onload="imageLoaded()" />
-            <a href="https://www.youtube.com/watch?v=7tZsrlbF5N0" class="section section-border text-gradient">Click Me</a>
-            <div class="section section-border text-gradient" style="margin-top: 2rem;">
+            <div class="section section-border" style="margin-top: 2rem;">
+                <p class="text-gradient">Hi I'm M.O.O.K.Y. and I make music that people listen to sometimes idk maybe update this paragraph before publishing.</p>
+            </div>
+            <a href="https://www.youtube.com/watch?v=7tZsrlbF5N0" class="section section-border section-margin text-gradient">Click Me</a>
+            <div class="section section-border section-margin text-gradient">
                 <h2 class="text-gradient">Connect</h2>
                 <h2 style="margin-bottom: 0;">
                     <!-- spotify -->
@@ -242,9 +252,9 @@
                     </div>
                 </h2>
             </div>
-            <div class="section section-border" style="margin-top: 2rem;">
+            <div class="section section-border section-margin">
                 <h2 class="text-gradient">Join The Club</h2>
-                <p class="text-solid">never miss a show by being the first to hear news and updates from M.O.O.K.Y.</p>
+                <p class="text-gradient">never miss a show by being the first to hear news and updates from M.O.O.K.Y.</p>
                 <form>
                     <input class="m-input" type="email" name="name" id="name" placeholder="Email Address" required>
                     <button type="submit" class="m-button">JOIN</button>
